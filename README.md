@@ -2,11 +2,11 @@
 
 Asistente inteligente para soporte académico estudiantil basado en **LangChain**, **FAISS** y **GitHub Models (GPT-4o-mini)**.
 
-Desarrollado para ISY0101 – Ingeniería de Soluciones con IA (Duoc UC, 2025).
+Desarrollado para ISY0101 – Ingeniería de Soluciones con IA (Duoc UC, 2026).
 
 ---
 
-## 📁 Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 asistente_academico/
@@ -24,7 +24,7 @@ asistente_academico/
 
 ---
 
-## ⚙️ Instalación
+##  Instalación
 
 ### 1. Clonar el repositorio
 ```bash
@@ -54,7 +54,7 @@ GITHUB_TOKEN="tu_token_aqui"
 
 ---
 
-## 🚀 Ejecución
+##  Ejecución
 
 ### Paso 1 — Agregar documentos
 Coloca los PDFs institucionales en la carpeta `documentos/`.
@@ -83,7 +83,7 @@ La app abrirá en `http://localhost:8501`
 
 ---
 
-## 🛠️ Tecnologías
+##  Tecnologías
 
 | Componente | Tecnología |
 |------------|-----------|
@@ -97,4 +97,4 @@ La app abrirá en `http://localhost:8501`
 ---
 
 ## 👥 Equipo
-[Patricio Azolas] y [Felipe Véliz] — ISY0101, Duoc UC 2025
+[Patricio Azolas] y [Felipe Véliz] — ISY0101, Duoc UC 2026
