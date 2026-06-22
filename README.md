@@ -23,7 +23,7 @@ El sistema es capaz de:
 
 ## Arquitectura del agente
 
-![Diagrama de orquestación](docs/diagrama_orquestacion.png)
+![Diagrama de orquestación](https://raw.githubusercontent.com/Elxpiipe/asistente_academico/main/docs/diagrama_orquestacion.PNG)
 
 El sistema se organiza en 5 capas:
 
