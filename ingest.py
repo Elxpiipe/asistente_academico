@@ -1,5 +1,4 @@
 """
-ingest.py
 Carga los PDFs desde /documentos, los fragmenta
 y genera el índice vectorial FAISS local.
 

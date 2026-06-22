@@ -1,5 +1,4 @@
 """
-rag_chain.py
 Pipeline RAG principal usando LangChain moderno (LCEL).
 RetrievalQA fue eliminado en versiones recientes, se usa RunnablePassthrough.
 """

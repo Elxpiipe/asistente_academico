@@ -1,5 +1,4 @@
 """
-prompts.py
 Prompts optimizados para el Asistente Académico RAG.
 """
 

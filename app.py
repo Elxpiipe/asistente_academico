@@ -1,11 +1,11 @@
 """
-app.py
 Interfaz web del Asistente Académico IA — con Agente ReAct.
 Ejecutar con: streamlit run app.py
 """
 
 import streamlit as st
 from agent import AgenteAcademico
+from security import aplicar_protocolos_seguridad
 
 st.set_page_config(
     page_title="Asistente Académico IA",
@@ -237,36 +237,45 @@ if pregunta := st.chat_input("Escribe tu consulta académica..."):
     with st.chat_message("assistant"):
         with st.spinner("🤖 El agente está analizando tu consulta..."):
             try:
-                respuesta_str = agente.procesar_consulta(pregunta)
-
-                riesgo = None
-                for nivel in ["ALTO", "MEDIO", "BAJO"]:
-                    if f"Riesgo: {nivel}" in respuesta_str:
-                        riesgo = nivel
-                        break
-
-                ofrece_doc = "¿Deseas que genere un documento formal?" in respuesta_str
-                docs_disponibles = [
-                    doc for doc in ["solicitud_entrevista", "constancia_alumno_regular", "apelacion_nota"]
-                    if doc in respuesta_str
-                ]
-
-                # Detectar categoría en terminal output no es posible desde app,
-                # pero podemos inferirla del resultado
-                if analisis_presente := ("ANÁLISIS DE TU SITUACIÓN" in respuesta_str):
-                    cat_label = "crítica" if "SITUACIÓN CRÍTICA" in respuesta_str else "situacional"
-                    plan_label = f"2 iteraciones — categoría: {cat_label}"
+                # ── Protocolos de seguridad (IE6) ────────────────
+                es_valido, consulta_segura, error_seg = aplicar_protocolos_seguridad(student_id, pregunta)
+                if not es_valido:
+                    respuesta_str    = f"🔒 **Consulta bloqueada por seguridad:**\n\n{error_seg}"
+                    riesgo           = None
+                    ofrece_doc       = False
+                    docs_disponibles = []
+                    iteraciones      = []
+                    st.markdown(respuesta_str)
                 else:
-                    plan_label = "1 iteración — categoría: informativa"
+                    respuesta_str = agente.procesar_consulta(consulta_segura)
 
-                iteraciones = [
-                    "Memoria — Cargando historial SQLite del estudiante (IE3)",
-                    "Memoria — Recuperación semántica con embeddings (IE4)",
-                    f"Planificación — {plan_label} (IE5)",
-                    "Iteración 1 — Consultando reglamento académico (RAG)",
-                    *(["Iteración 2 — Analizando riesgo académico"] if analisis_presente else []),
-                    f"Decisión — Riesgo {riesgo or 'BAJO'} → {'Ofrecer documento' if ofrece_doc else 'Respuesta directa'} (IE6)",
-                ]
+                    riesgo = None
+                    for nivel in ["ALTO", "MEDIO", "BAJO"]:
+                        if f"Riesgo: {nivel}" in respuesta_str:
+                            riesgo = nivel
+                            break
+
+                    ofrece_doc = "¿Deseas que genere un documento formal?" in respuesta_str
+                    docs_disponibles = [
+                        doc for doc in ["solicitud_entrevista", "constancia_alumno_regular", "apelacion_nota"]
+                        if doc in respuesta_str
+                    ]
+
+                    if analisis_presente := ("ANÁLISIS DE TU SITUACIÓN" in respuesta_str):
+                        cat_label = "crítica" if "SITUACIÓN CRÍTICA" in respuesta_str else "situacional"
+                        plan_label = f"2 iteraciones — categoría: {cat_label}"
+                    else:
+                        plan_label = "1 iteración — categoría: informativa"
+
+                    iteraciones = [
+                        "Seguridad — Validación y sanitización de input (IE6)",
+                        "Memoria — Cargando historial SQLite del estudiante (IE3)",
+                        "Memoria — Recuperación semántica con embeddings (IE4)",
+                        f"Planificación — {plan_label} (IE5)",
+                        "Iteración 1 — Consultando reglamento académico (RAG)",
+                        *(["Iteración 2 — Analizando riesgo académico"] if analisis_presente else []),
+                        f"Decisión — Riesgo {riesgo or 'BAJO'} → {'Ofrecer documento' if ofrece_doc else 'Respuesta directa'} (IE6)",
+                    ]
 
             except Exception as e:
                 respuesta_str    = f"⚠️ Error inesperado: {e}"

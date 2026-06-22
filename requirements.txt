@@ -5,3 +5,5 @@ faiss-cpu
 pypdf
 python-dotenv
 streamlit
+psutil
+plotly

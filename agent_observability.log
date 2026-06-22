@@ -1,0 +1,186 @@
+2026-06-22 14:36:07,609 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:36:07,610 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:36:11,377 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:36:11,378 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=3767ms | estado=OK
+2026-06-22 14:36:12,164 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:36:12,200 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:36:12,306 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:38:48,400 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:38:48,401 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:38:49,813 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:38:49,814 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1413ms | estado=OK
+2026-06-22 14:38:50,606 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:38:50,611 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:38:50,717 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:41:40,039 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:41:40,040 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:41:41,433 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:41:41,434 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1394ms | estado=OK
+2026-06-22 14:41:42,193 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:41:42,198 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:41:42,310 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:43:37,713 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:43:37,714 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:43:39,090 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:43:39,091 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1376ms | estado=OK
+2026-06-22 14:43:39,906 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:43:39,911 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:43:40,021 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:46:25,288 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:46:25,289 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:46:26,696 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:46:26,697 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1408ms | estado=OK
+2026-06-22 14:46:27,475 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:46:27,481 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:46:27,592 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:47:32,922 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:47:32,924 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:47:34,261 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:47:34,262 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1338ms | estado=OK
+2026-06-22 14:47:34,812 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:47:34,817 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:47:34,928 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:48:42,918 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:48:42,918 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:48:44,244 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:48:44,244 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1325ms | estado=OK
+2026-06-22 14:48:44,847 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:48:44,853 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:48:44,963 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:52:29,563 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:52:29,564 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:52:30,989 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:52:30,990 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1426ms | estado=OK
+2026-06-22 14:52:31,719 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:52:31,724 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:52:31,830 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:53:43,239 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:53:43,240 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:53:44,543 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:53:44,543 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1304ms | estado=OK
+2026-06-22 14:53:45,460 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-06-22 14:53:45,465 | ERROR | AgentObservability | [ERROR] tipo=ERROR_GENERAL | herramienta=None | mensaje=Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}
+2026-06-22 14:53:45,577 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=ERROR | exitoso=0 | herramientas=[]
+2026-06-22 14:56:53,333 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:56:53,334 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 14:56:54,833 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 14:56:54,835 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1500ms | estado=OK
+2026-06-22 14:56:56,862 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 14:56:56,878 | INFO | AgentObservability | [LATENCIA] clasificacion=2042ms
+2026-06-22 14:56:56,878 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=2042ms | estado=OK
+2026-06-22 14:56:56,979 | INFO | AgentObservability | [INICIO] student=EST001 | consulta='¿Cuál es el porcentaje mínimo de asistencia?' | memoria=183.2MB | cpu=34.2%
+2026-06-22 14:56:57,619 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-06-22 14:56:57,758 | INFO | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-06-22 14:56:58,904 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 14:57:00,539 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 14:57:01,131 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 14:57:01,132 | INFO | AgentObservability | [LATENCIA] consulta=4153ms
+2026-06-22 14:57:01,132 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=4153ms | estado=OK
+2026-06-22 14:57:01,133 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 14:57:01,239 | INFO | AgentObservability | [FIN] latencia_total=4260.48ms | riesgo=BAJO | exitoso=1 | herramientas=['consultar_reglamento']
+2026-06-22 14:58:35,074 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:58:35,074 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 14:58:36,398 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 14:58:36,399 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1323ms | estado=OK
+2026-06-22 14:58:39,104 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 14:58:39,105 | INFO | AgentObservability | [LATENCIA] clasificacion=2707ms
+2026-06-22 14:58:39,105 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=2707ms | estado=OK
+2026-06-22 14:58:39,207 | INFO | AgentObservability | [INICIO] student=EST002 | consulta='Reprobé dos asignaturas, ¿qué hago?' | memoria=185.6MB | cpu=8.2%
+2026-06-22 14:58:40,742 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 14:58:43,245 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 14:58:43,817 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 14:58:43,819 | INFO | AgentObservability | [LATENCIA] consulta=4612ms
+2026-06-22 14:58:43,819 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=4612ms | estado=OK
+2026-06-22 14:58:47,688 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 14:58:47,689 | INFO | AgentObservability | [LATENCIA] analisis=3870ms
+2026-06-22 14:58:47,689 | INFO | AgentObservability | [PASO] ITERACION_2_ANALISIS | herramienta=analizar_riesgo | duracion=3870ms | estado=OK
+2026-06-22 14:58:47,690 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 14:58:47,795 | INFO | AgentObservability | [FIN] latencia_total=8588.93ms | riesgo=ALTO | exitoso=1 | herramientas=['consultar_reglamento', 'analizar_riesgo']
+2026-06-22 14:59:56,966 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 14:59:56,967 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 14:59:58,168 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 14:59:58,169 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1202ms | estado=OK
+2026-06-22 15:00:00,078 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:00:00,079 | INFO | AgentObservability | [LATENCIA] clasificacion=1909ms
+2026-06-22 15:00:00,080 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=1909ms | estado=OK
+2026-06-22 15:00:00,181 | INFO | AgentObservability | [INICIO] student=EST001 | consulta='¿Qué pasa si falto más de lo permitido?' | memoria=185.7MB | cpu=10.8%
+2026-06-22 15:00:01,648 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:00:04,138 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:00:04,655 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:00:04,656 | INFO | AgentObservability | [LATENCIA] consulta=4475ms
+2026-06-22 15:00:04,656 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=4475ms | estado=OK
+2026-06-22 15:00:04,657 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:00:04,767 | INFO | AgentObservability | [FIN] latencia_total=4587.49ms | riesgo=BAJO | exitoso=1 | herramientas=['consultar_reglamento']
+2026-06-22 15:37:13,199 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 15:37:13,200 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 15:37:14,722 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 15:37:14,722 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1522ms | estado=OK
+2026-06-22 15:37:17,192 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:37:17,198 | INFO | AgentObservability | [LATENCIA] clasificacion=2475ms
+2026-06-22 15:37:17,198 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=2475ms | estado=OK
+2026-06-22 15:37:17,300 | INFO | AgentObservability | [INICIO] student=EST001 | consulta='¿Cuando se termina el primer semestre?' | memoria=202.1MB | cpu=22.2%
+2026-06-22 15:37:17,906 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-06-22 15:37:17,935 | INFO | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-06-22 15:37:18,830 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:37:20,599 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:37:21,152 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:37:21,153 | INFO | AgentObservability | [LATENCIA] consulta=3853ms
+2026-06-22 15:37:21,153 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=3853ms | estado=OK
+2026-06-22 15:37:21,154 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:37:21,266 | INFO | AgentObservability | [FIN] latencia_total=3966.06ms | riesgo=BAJO | exitoso=1 | herramientas=['consultar_reglamento']
+2026-06-22 15:40:43,904 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 15:40:43,905 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 15:40:45,157 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 15:40:45,158 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1253ms | estado=OK
+2026-06-22 15:40:47,660 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:40:47,661 | INFO | AgentObservability | [LATENCIA] clasificacion=2503ms
+2026-06-22 15:40:47,662 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=2503ms | estado=OK
+2026-06-22 15:40:47,764 | INFO | AgentObservability | [INICIO] student=EST003 | consulta='¿Cuando comienza el segundo semestre?' | memoria=204.4MB | cpu=7.8%
+2026-06-22 15:40:49,302 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:40:51,304 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:40:51,938 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:40:51,939 | INFO | AgentObservability | [LATENCIA] consulta=4176ms
+2026-06-22 15:40:51,939 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=4176ms | estado=OK
+2026-06-22 15:40:51,940 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:40:52,051 | INFO | AgentObservability | [FIN] latencia_total=4287.89ms | riesgo=BAJO | exitoso=1 | herramientas=['consultar_reglamento']
+2026-06-22 15:42:26,049 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 15:42:26,049 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:42:27,533 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 15:42:27,534 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1485ms | estado=OK
+2026-06-22 15:42:28,497 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-06-22 15:42:28,497 | INFO | openai._base_client | Retrying request to /chat/completions in 60.000000 seconds
+2026-06-22 15:43:30,531 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:43:30,532 | INFO | AgentObservability | [LATENCIA] clasificacion=62998ms
+2026-06-22 15:43:30,532 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=62998ms | estado=OK
+2026-06-22 15:43:30,634 | INFO | AgentObservability | [INICIO] student=EST003 | consulta='Me van a eliminar de la carrera, reprobé 3 asignaturas ' | memoria=204.6MB | cpu=9.2%
+2026-06-22 15:43:32,083 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:43:34,546 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:43:35,053 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:43:35,054 | INFO | AgentObservability | [LATENCIA] consulta=4420ms
+2026-06-22 15:43:35,055 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=4420ms | estado=OK
+2026-06-22 15:43:38,354 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:43:38,355 | INFO | AgentObservability | [LATENCIA] analisis=3300ms
+2026-06-22 15:43:38,355 | INFO | AgentObservability | [PASO] ITERACION_2_ANALISIS | herramienta=analizar_riesgo | duracion=3300ms | estado=OK
+2026-06-22 15:43:38,356 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:43:38,469 | INFO | AgentObservability | [FIN] latencia_total=7834.71ms | riesgo=ALTO | exitoso=1 | herramientas=['consultar_reglamento', 'analizar_riesgo']
+2026-06-22 15:43:48,115 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 15:43:53,591 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:43:53,592 | INFO | AgentObservability | [LATENCIA] generacion=5477ms
+2026-06-22 15:43:53,592 | INFO | AgentObservability | [PASO] GENERACION_DOCUMENTO | herramienta=generar_documento | duracion=5477ms | estado=OK
+2026-06-22 15:43:53,694 | INFO | AgentObservability | [FIN] latencia_total=0ms | riesgo=N/A | exitoso=1 | herramientas=['generar_documento']
+2026-06-22 15:44:42,971 | INFO | AgentObservability | Base de datos de observabilidad inicializada correctamente.
+2026-06-22 15:44:42,973 | INFO | AgentObservability | [PASO] CARGAR_HISTORIAL | herramienta=None | duracion=1ms | estado=OK
+2026-06-22 15:44:44,207 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 404 Not Found"
+2026-06-22 15:44:44,208 | INFO | AgentObservability | [PASO] RECUPERACION_SEMANTICA | herramienta=None | duracion=1235ms | estado=OK
+2026-06-22 15:44:46,235 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:44:46,236 | INFO | AgentObservability | [LATENCIA] clasificacion=2028ms
+2026-06-22 15:44:46,236 | INFO | AgentObservability | [PASO] CLASIFICACION | herramienta=clasificar_consulta | duracion=2028ms | estado=OK
+2026-06-22 15:44:46,337 | INFO | AgentObservability | [INICIO] student=EST001 | consulta='¿Cuáles son las fechas importantes del semestre?' | memoria=205.1MB | cpu=8.3%
+2026-06-22 15:44:47,854 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:44:52,961 | INFO | httpx | HTTP Request: POST https://models.inference.ai.azure.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-22 15:44:53,833 | INFO | httpx | HTTP Request: POST https://models.github.ai/inference/embeddings "HTTP/1.1 200 OK"
+2026-06-22 15:44:53,834 | INFO | AgentObservability | [LATENCIA] consulta=7495ms
+2026-06-22 15:44:53,835 | INFO | AgentObservability | [PASO] ITERACION_1_CONSULTA | herramienta=consultar_reglamento | duracion=7495ms | estado=OK
+2026-06-22 15:44:53,835 | INFO | AgentObservability | [PASO] DECISION_ADAPTATIVA | herramienta=None | duracion=0ms | estado=OK
+2026-06-22 15:44:53,945 | INFO | AgentObservability | [FIN] latencia_total=7606.99ms | riesgo=BAJO | exitoso=1 | herramientas=['consultar_reglamento']
+2026-06-22 16:28:43,855 | WARNING | AgentSecurity | [SEGURIDAD] Prompt injection detectado: 'ignore\s+(previous|all|above)\s+instructions?'

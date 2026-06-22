@@ -1,11 +1,12 @@
 """
-agent.py
 Agente ReAct para consultas académicas.
 Incluye memoria de contenido (IE3), recuperación semántica (IE4),
-planificación con prioridades (IE5) y toma de decisiones adaptativas (IE6).
+planificación con prioridades (IE5), toma de decisiones adaptativas (IE6)
+y observabilidad completa (EP3: IE1, IE2, IE3).
 """
 
 import os
+import time
 import sqlite3
 from datetime import datetime
 from dotenv import load_dotenv
@@ -16,6 +17,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 
 from rag_chain import consultar as rag_consultar
+from observability import AgentObserver
 
 load_dotenv()
 
@@ -158,7 +160,6 @@ def recuperar_contexto_semantico(pregunta: str, historial: list[dict]) -> str:
     if not historial:
         return ""
 
-    # Con solo 1 entrada retornamos directamente sin similarity search
     if len(historial) == 1:
         item = historial[0]
         riesgo = item.get("riesgo") or "N/A"
@@ -172,7 +173,6 @@ def recuperar_contexto_semantico(pregunta: str, historial: list[dict]) -> str:
             openai_api_key=os.getenv("GITHUB_TOKEN"),
             openai_api_base=os.getenv("OPENAI_EMBEDDINGS_URL"),
         )
-
         documentos = [
             Document(
                 page_content=item["consulta"],
@@ -184,14 +184,11 @@ def recuperar_contexto_semantico(pregunta: str, historial: list[dict]) -> str:
             )
             for item in historial
         ]
-
         vectorstore = FAISS.from_documents(documentos, embeddings)
         k = min(2, len(documentos))
         resultados = vectorstore.similarity_search(pregunta, k=k)
-
         if not resultados:
             return ""
-
         contexto = "📋 CONTEXTO DE CONSULTAS PREVIAS SIMILARES:\n"
         for r in resultados:
             riesgo = r.metadata.get("riesgo") or "N/A"
@@ -227,16 +224,14 @@ Responde SOLO con una palabra: informativa, situacional o critica."""
     resultado = llm.invoke(prompt)
     categoria = resultado.content.strip().lower()
     if categoria not in ["informativa", "situacional", "critica"]:
-        return "situacional"  # fallback seguro
+        return "situacional"
     return categoria
 
 
 # ── DECISIÓN ADAPTATIVA (IE6) ────────────────────────────────────
 
 def decidir_accion(riesgo: str, respuesta_consulta: str, analisis: str) -> dict:
-    """
-    Toma de decisiones adaptativa según el nivel de riesgo detectado (IE6).
-    """
+    """Toma de decisiones adaptativa según el nivel de riesgo detectado (IE6)."""
     riesgo_upper = riesgo.upper()
 
     if riesgo_upper == "ALTO":
@@ -255,7 +250,7 @@ def decidir_accion(riesgo: str, respuesta_consulta: str, analisis: str) -> dict:
         ofrecer_documento = True
         documentos_disponibles = ["solicitud_entrevista", "constancia_alumno_regular"]
 
-    else:  # BAJO
+    else:
         mensaje_adicional = "\n\n✅ **Tu situación académica está bien encaminada.** Sigue así."
         ofrecer_documento = False
         documentos_disponibles = []
@@ -287,11 +282,8 @@ class AgenteAcademico:
 
     def procesar_consulta(self, pregunta: str, max_iteraciones: int = 5) -> str:
         """
-        Procesa una consulta con lógica ReAct + memoria + planificación + decisión adaptativa.
-        IE3: usa historial SQLite como contexto
-        IE4: recuperación semántica sobre historial
-        IE5: clasificación y planificación de iteraciones según prioridad
-        IE6: decisión adaptativa según riesgo
+        Procesa una consulta con lógica ReAct + memoria + planificación +
+        decisión adaptativa + observabilidad completa (EP3).
         """
 
         print(f"\n{'='*60}")
@@ -299,78 +291,138 @@ class AgenteAcademico:
         print(f"❓ Pregunta: {pregunta}")
         print(f"{'='*60}\n")
 
-        # ── IE3: Cargar memoria de contenido ──────────────────────
-        print("[Memoria] Cargando historial del estudiante...")
-        historial = obtener_historial(self.student_id)
+        # ── OBSERVABILIDAD: Iniciar observer ─────────────────────
+        observer = AgentObserver(student_id=self.student_id)
 
-        # ── IE4: Recuperación semántica ───────────────────────────
-        print("[Memoria] Recuperando contexto semántico...")
-        contexto_previo = recuperar_contexto_semantico(pregunta, historial)
+        try:
+            # ── IE3: Cargar memoria de contenido ──────────────────
+            print("[Memoria] Cargando historial del estudiante...")
+            t0 = time.time()
+            historial = obtener_historial(self.student_id)
+            observer.registrar_paso(
+                "CARGAR_HISTORIAL",
+                duracion_ms=(time.time() - t0) * 1000,
+                detalle=f"{len(historial)} registros cargados"
+            )
 
-        # ── IE5: Clasificar consulta y definir plan ───────────────
-        print("[Planificación] Clasificando consulta...")
-        categoria = clasificar_consulta(pregunta, self.llm)
-        print(f"[Planificación] Categoría: {categoria}")
+            # ── IE4: Recuperación semántica ───────────────────────
+            print("[Memoria] Recuperando contexto semántico...")
+            t0 = time.time()
+            contexto_previo = recuperar_contexto_semantico(pregunta, historial)
+            observer.registrar_paso(
+                "RECUPERACION_SEMANTICA",
+                duracion_ms=(time.time() - t0) * 1000,
+                detalle="Con FAISS" if "SIMILARES" in contexto_previo else "Fallback texto"
+            )
 
-        # Definir iteraciones según prioridad (IE5)
-        if categoria == "informativa":
-            # Solo consultar — 1 iteración
-            iteraciones_plan = ["consultar"]
-            print("[Planificación] Plan: 1 iteración (solo consulta)\n")
-        elif categoria == "situacional":
-            # Consultar + analizar — 2 iteraciones
-            iteraciones_plan = ["consultar", "analizar"]
-            print("[Planificación] Plan: 2 iteraciones (consulta + análisis)\n")
-        else:  # critica
-            # Consultar + analizar con prioridad alta — 2 iteraciones + flag urgente
-            iteraciones_plan = ["consultar", "analizar"]
-            print("[Planificación] Plan: 2 iteraciones PRIORITARIAS (urgente)\n")
+            # ── IE5: Clasificar consulta ──────────────────────────
+            print("[Planificación] Clasificando consulta...")
+            t0 = time.time()
+            categoria = clasificar_consulta(pregunta, self.llm)
+            dur_clasificacion = (time.time() - t0) * 1000
+            observer.registrar_latencia("clasificacion", dur_clasificacion)
+            observer.registrar_paso(
+                "CLASIFICACION",
+                herramienta="clasificar_consulta",
+                duracion_ms=dur_clasificacion,
+                detalle=f"Categoría: {categoria}"
+            )
+            print(f"[Planificación] Categoría: {categoria}")
 
-        pregunta_con_contexto = pregunta
-        if contexto_previo:
-            pregunta_con_contexto = f"{contexto_previo}\n\nConsulta actual: {pregunta}"
+            # ── Iniciar ejecución en observer ─────────────────────
+            observer.iniciar_ejecucion(pregunta, categoria)
 
-        respuesta_consulta = ""
-        analisis = ""
-        riesgo_detectado = "BAJO"
+            # Definir plan según categoría
+            if categoria == "informativa":
+                iteraciones_plan = ["consultar"]
+                print("[Planificación] Plan: 1 iteración (solo consulta)\n")
+            elif categoria == "situacional":
+                iteraciones_plan = ["consultar", "analizar"]
+                print("[Planificación] Plan: 2 iteraciones (consulta + análisis)\n")
+            else:
+                iteraciones_plan = ["consultar", "analizar"]
+                print("[Planificación] Plan: 2 iteraciones PRIORITARIAS (urgente)\n")
 
-        # ── Ejecutar iteraciones según el plan ────────────────────
-        for i, paso in enumerate(iteraciones_plan, 1):
-            if paso == "consultar":
-                print(f"[Iteración {i}] Consultando reglamento...")
-                respuesta_consulta = consultar_reglamento.invoke(pregunta_con_contexto)
-                print("✓ Información encontrada\n")
+            pregunta_con_contexto = pregunta
+            if contexto_previo:
+                pregunta_con_contexto = f"{contexto_previo}\n\nConsulta actual: {pregunta}"
 
-            elif paso == "analizar":
-                print(f"[Iteración {i}] Analizando situación...")
-                # Para consultas críticas, agregar contexto de urgencia
-                prefijo = "⚠️ SITUACIÓN CRÍTICA - " if categoria == "critica" else ""
-                contexto_analisis = f"{prefijo}Pregunta del estudiante: {pregunta}\n\nInformación del reglamento: {respuesta_consulta[:400]}"
-                analisis = analizar_riesgo.invoke(contexto_analisis)
-                for nivel in ["ALTO", "MEDIO", "BAJO"]:
-                    if nivel in analisis.upper():
-                        riesgo_detectado = nivel
-                        break
-                print(f"✓ Análisis completado — Riesgo: {riesgo_detectado}\n")
+            respuesta_consulta = ""
+            analisis = ""
+            riesgo_detectado = "BAJO"
 
-        # ── IE6: Decisión adaptativa ──────────────────────────────
-        print(f"[Decisión] Riesgo detectado: {riesgo_detectado}")
-        decision = decidir_accion(riesgo_detectado, respuesta_consulta, analisis)
+            # ── Ejecutar herramientas según el plan ───────────────
+            for i, paso in enumerate(iteraciones_plan, 1):
 
-        # ── Construcción de respuesta final ───────────────────────
-        bloque_contexto = ""
-        if contexto_previo:
-            bloque_contexto = f"\n{contexto_previo}\n\n---\n"
+                if paso == "consultar":
+                    print(f"[Iteración {i}] Consultando reglamento...")
+                    t0 = time.time()
+                    try:
+                        respuesta_consulta = consultar_reglamento.invoke(pregunta_con_contexto)
+                        dur = (time.time() - t0) * 1000
+                        observer.registrar_latencia("consulta", dur)
+                        observer.registrar_herramienta("consultar_reglamento")
+                        observer.registrar_paso(
+                            f"ITERACION_{i}_CONSULTA",
+                            herramienta="consultar_reglamento",
+                            duracion_ms=dur,
+                            estado="OK",
+                            detalle=f"Respuesta: {respuesta_consulta[:80]}"
+                        )
+                        print("✓ Información encontrada\n")
+                    except Exception as e:
+                        observer.registrar_error("ERROR_CONSULTA", str(e), "consultar_reglamento")
+                        raise
 
-        if categoria == "informativa":
-            # Respuesta directa sin análisis
-            respuesta_final = f"""{bloque_contexto}RESPUESTA DEL ASESOR ACADÉMICO:
+                elif paso == "analizar":
+                    print(f"[Iteración {i}] Analizando situación...")
+                    t0 = time.time()
+                    try:
+                        prefijo = "⚠️ SITUACIÓN CRÍTICA - " if categoria == "critica" else ""
+                        contexto_analisis = f"{prefijo}Pregunta del estudiante: {pregunta}\n\nInformación del reglamento: {respuesta_consulta[:400]}"
+                        analisis = analizar_riesgo.invoke(contexto_analisis)
+                        dur = (time.time() - t0) * 1000
+                        observer.registrar_latencia("analisis", dur)
+                        observer.registrar_herramienta("analizar_riesgo")
+
+                        for nivel in ["ALTO", "MEDIO", "BAJO"]:
+                            if nivel in analisis.upper():
+                                riesgo_detectado = nivel
+                                break
+
+                        observer.registrar_paso(
+                            f"ITERACION_{i}_ANALISIS",
+                            herramienta="analizar_riesgo",
+                            duracion_ms=dur,
+                            estado="OK",
+                            detalle=f"Riesgo detectado: {riesgo_detectado}"
+                        )
+                        print(f"✓ Análisis completado — Riesgo: {riesgo_detectado}\n")
+                    except Exception as e:
+                        observer.registrar_error("ERROR_ANALISIS", str(e), "analizar_riesgo")
+                        raise
+
+            # ── IE6: Decisión adaptativa ──────────────────────────
+            print(f"[Decisión] Riesgo detectado: {riesgo_detectado}")
+            decision = decidir_accion(riesgo_detectado, respuesta_consulta, analisis)
+            observer.registrar_paso(
+                "DECISION_ADAPTATIVA",
+                detalle=f"Riesgo={riesgo_detectado} | Documento={decision['ofrecer_documento']}"
+            )
+
+            # ── Construcción de respuesta final ───────────────────
+            bloque_contexto = ""
+            if contexto_previo:
+                bloque_contexto = f"\n{contexto_previo}\n\n---\n"
+
+            if categoria == "informativa":
+                respuesta_final = f"""{bloque_contexto}RESPUESTA DEL ASESOR ACADÉMICO:
 
 {respuesta_consulta}
 
 {decision['mensaje_adicional'].strip()}"""
-        else:
-            respuesta_final = f"""{bloque_contexto}RESPUESTA DEL ASESOR ACADÉMICO:
+            else:
+                respuesta_final = f"""{bloque_contexto}RESPUESTA DEL ASESOR ACADÉMICO:
 
 {respuesta_consulta}
 
@@ -379,27 +431,42 @@ class AgenteAcademico:
 ANÁLISIS DE TU SITUACIÓN:
 {analisis}{decision['mensaje_adicional']}"""
 
-        if decision["ofrecer_documento"]:
-            opciones = " | ".join([
-                f"`{d}`" for d in decision["documentos_disponibles"]
-            ])
-            respuesta_final += f"\n\n---\n📄 **¿Deseas que genere un documento formal?**\nOpciones disponibles: {opciones}"
+            if decision["ofrecer_documento"]:
+                opciones = " | ".join([f"`{d}`" for d in decision["documentos_disponibles"]])
+                respuesta_final += f"\n\n---\n📄 **¿Deseas que genere un documento formal?**\nOpciones disponibles: {opciones}"
 
-        # ── Guardar en histórico ──────────────────────────────────
-        guardar_interaccion(
-            self.student_id,
-            pregunta,
-            respuesta_final,
-            riesgo=riesgo_detectado,
-        )
+            # ── Guardar en histórico ──────────────────────────────
+            guardar_interaccion(self.student_id, pregunta, respuesta_final, riesgo=riesgo_detectado)
 
-        return respuesta_final
+            # ── OBSERVABILIDAD: Finalizar ejecución ───────────────
+            observer.finalizar_ejecucion(riesgo=riesgo_detectado)
+
+            return respuesta_final
+
+        except Exception as e:
+            observer.registrar_error("ERROR_GENERAL", str(e))
+            observer.finalizar_ejecucion(riesgo="ERROR")
+            raise
 
     def generar_documento_solicitado(self, tipo: str) -> str:
         """Genera un documento formal usando el historial reciente como contexto."""
-        historial = obtener_historial(self.student_id, limite=1)
-        contexto = historial[0]["respuesta"][:500] if historial else "Sin contexto previo."
-        return generar_documento.invoke({"tipo": tipo, "contexto": contexto})
+        observer = AgentObserver(student_id=self.student_id)
+        t0 = time.time()
+        try:
+            historial = obtener_historial(self.student_id, limite=1)
+            contexto = historial[0]["respuesta"][:500] if historial else "Sin contexto previo."
+            resultado = generar_documento.invoke({"tipo": tipo, "contexto": contexto})
+            dur = (time.time() - t0) * 1000
+            observer.registrar_latencia("generacion", dur)
+            observer.registrar_herramienta("generar_documento")
+            observer.registrar_paso("GENERACION_DOCUMENTO", herramienta="generar_documento",
+                                    duracion_ms=dur, detalle=f"Tipo: {tipo}")
+            observer.finalizar_ejecucion(riesgo="N/A")
+            return resultado
+        except Exception as e:
+            observer.registrar_error("ERROR_GENERACION", str(e), "generar_documento")
+            observer.finalizar_ejecucion(riesgo="ERROR")
+            raise
 
 
 # ── FUNCIÓN PRINCIPAL ────────────────────────────────────────────
